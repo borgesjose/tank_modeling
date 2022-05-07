@@ -10,8 +10,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Passo 1, definir o vetor tempo:
-    Ts = .010; % periodo de amostragem para processo de um tanque ( Landau,2006)
-    Tsim = 30 
+    Ts = .01; % periodo de amostragem para processo de um tanque ( Landau,2006)
+    Tsim = 150
     nptos = Tsim/Ts;
     ts = linspace(0,Tsim,nptos+1);
     
@@ -19,7 +19,7 @@
 
 %Dados do probelma:
 
-h0 = 0.7; % ponto inicial
+h0 = 0.01; % ponto inicial
 
 u = zeros(nptos+1,1); % variavel de entrada
 h = zeros(nptos+1,1); % variavel de saida
@@ -42,30 +42,29 @@ end ;
 
 % Calculando o input
  for i=1:nptos, 
-    %if (i<=nptos/5)  u(i)=.0005; end;
-    %if (i>nptos/5)   u(i) = .0005; end;
-    u(i)=.0015;
+    if (i<=nptos/3)  u(i)=.0010; end;
+    if (i>nptos/3 & i<=2*nptos/3 )   u(i) = .0000; end;
+    if (i>2*nptos/3)   u(i) = .0015; end;
+    %u(i)=.0009;
 end ;
-[0 0.1]
+
 % Simulation with ode45;
 for i=1:nptos
     
     %u(i+1) = ref(i);   % store the Qin value
    
-    [~,y] = ode45(@(t,y) tank_cilindrical(t,y,A,u(i)),[0,0.1],h0);
-    %if (y<=0) y=0;end;
-    %if (y>=.7) y=.7; end;
-    %[~,rr] = y;
+    [~,y] = ode45(@(t,y) tank_cilindrical(t,y,A,u(i),Cd),[0,Ts],h0);
     h0 = y(end); % take the last point
     h(i+1) = h0; % store the height for plotting
-    if (y<=0) h(i+1)=0;end;
-    if (y>=.7) h(i+1)=.7; end;
+    %if (y<=0) h(i+1)=0;end;
+    %if (y>=.7) h(i+1)=.7; end;
 
 end
 %%
 % plot results
 figure;
 plot(ts,h,'-r','LineWidth', 3,'DisplayName','height'); hold on
-plot(ts,ref,'k:','LineWidth', 3,'DisplayName','input'); hold off
+plot(ts,u,'k:','LineWidth', 3,'DisplayName','input'); hold off
 ylabel('Tank Height');
+xlabel('Time (s)');
 legend();

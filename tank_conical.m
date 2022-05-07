@@ -1,14 +1,12 @@
-function dh_dt = tank_conical(t,y,Qin)
+function dh_dt = tank_conical(t,y,A,Qin,Cd)
     % calculate derivative of the Level
     
     g = 9.81;
-    H = 70; % Altura
-    R = 9.00; % Raio
-    Cd=0.97*0.97;
-    b = Cd*sqrt(2*g)
+    H = .70; % Altura
+    R1 = 0.042; % Raio em metros
+    R2 = 0.01; % Raio da base do cilindro
     
-    k1 = 1/(pi*(R/H)^2);
-    k2 = b/(pi*(R/H)^2);
+    b = A*Cd*sqrt(2*g);
 
-    dh_dt = (Qin*k1*y^(-2)) - k2*y^(-3/2);
+    dh_dt = (Qin - b*y^(1/2))/(R2 + ((R1-R2)/H)*y)^(2);
 end
