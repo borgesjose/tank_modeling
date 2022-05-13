@@ -1,4 +1,13 @@
-
+#-----------------------------------------------------#  
+# Universidade Federal do Piauí                       #
+# Campus Ministro Petronio Portela                    #
+# Copyright 2022 -José Borges do Carmo Neto-          #
+# @author José Borges do Carmo Neto                   #
+# @email jose.borges90@hotmail.com                    #
+#  Simulation cilindrical tank                        #
+#                                                     #
+#  -- Version: 1.0  - 02/05/2022                      #
+#-----------------------------------------------------#
 
 
 def cilindrical_tank_nl(t,y,A,Qin,Cd):
