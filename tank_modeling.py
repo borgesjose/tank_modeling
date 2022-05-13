@@ -1,5 +1,7 @@
 
-def dh_dt(t,y,A,Qin,Cd):
+
+
+def cilindrical_tank_nl(t,y,A,Qin,Cd):
     import math
     # calculate derivative of the Level
     
@@ -15,3 +17,5 @@ def dh_dt(t,y,A,Qin,Cd):
     dh_dt = Qin*k1 - k2*y**(1/2);
 
     return dh_dt
+
+
