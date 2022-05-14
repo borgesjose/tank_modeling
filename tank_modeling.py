@@ -15,7 +15,7 @@ def cilindrical_tank_nl(t,y,A,Qin,Cd):
     # calculate derivative of the Level
     
     g = 9.81;
-    R = 0.042; % Radio meters
+    R = 0.042; # Radio meters
     
     b = A*Cd*math.sqrt(2*g);
     
