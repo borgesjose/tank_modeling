@@ -12,7 +12,7 @@
 
 %Passo 1, definir o vetor tempo:
     Ts = .01; % periodo de amostragem para processo de um tanque ( Landau,2006)
-    Tsim = 150
+    Tsim = 100
     nptos = Tsim/Ts;
     ts = linspace(0,Tsim,nptos+1);
     
@@ -43,9 +43,9 @@ end ;
 
 % Calculando o input
  for i=1:nptos, 
-    if (i<=nptos/3)  u(i)=.0010; end;
-    if (i>nptos/3 & i<=2*nptos/3 )   u(i) = .0012; end;
-    if (i>2*nptos/3)   u(i) = .0001; end;
+    if (i<=nptos/3)  u(i)=.000001; end;
+    if (i>nptos/3 & i<=2*nptos/3 )   u(i) = .00038; end;
+    if (i>2*nptos/3)   u(i) = .00038; end;
     %u(i)=.0009;
 end ;
 
